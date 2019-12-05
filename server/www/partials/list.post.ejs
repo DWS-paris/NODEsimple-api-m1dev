@@ -1,0 +1,30 @@
+<ul id="postList"></ul>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    
+        fetch('/api/post', {
+            method: 'GET'
+        })
+        // Get Fetch response
+        .then( response => {
+            return response.ok ? response.json() : console.error(reesponse)
+        })
+        // Extract json data
+        .then( jsonData => {
+            // Make a loop on jsonData colleection
+            for( let post of jsonData.data ){
+                // Add on post in the list
+                document.querySelector('#postList').innerHTML += `
+                    <li>
+                        <p>${post.title}</p>
+                        <a href="post/${post.id}">Reead more...</a>
+                    </li>
+                `;
+            }
+        })
+        // Get Fetch error
+        .catch( err => console.error(err));
+    
+    })
+</script>
