@@ -48,6 +48,15 @@ Config
             */
                 // Homepage
                 server.get( '/', (req, res) => res.render('index', { title: 'NodeJS simple API' }) );
+
+                // Add post
+                server.get( '/add-post', (req, res) => res.render('add-post', { title: 'NodeJS simple API' }) );
+
+                // Single post: call the route like this: localhost:2767/post?id=1
+                server.get( '/post', (req, res) => res.render('post', { title: 'NodeJS simple API' }) );
+
+                // EEdit post: call the route like this: localhost:2767/edit-post?id=1
+                server.get( '/edit-post', (req, res) => res.render('edit-post', { title: 'NodeJS simple API' }) );
             //
 
             /*
