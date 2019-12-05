@@ -55,10 +55,13 @@ Config
             */
                 // CRUD : create item
                 server.post( '/api/post', (req, res) => {
+                    // Get data from rrequest body
+                    const bodyData = req.body;
+                
                     // Send back data to the client
                     res.json({
                         msg: 'Post created!',
-                        data: null,
+                        data: bodyData,
                         error: null,
                         status: 201
                     })

@@ -47,7 +47,7 @@
                         // Get Fetch response
                         .then( response => {
                             // Check response
-                            return response.ok ? response.json : console.error(response)
+                            return response.ok ? response.json() : console.error(response)
                         })
                         // Get json data from response
                         .then( jsonData => {
