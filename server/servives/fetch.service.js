@@ -45,8 +45,34 @@ Methods
     };
     
     // CRUD: read item by id
-    const readItem = () => {
-    
+    const readItem = ( endpoint ) => {
+        // Return new Promise
+        return new Promise( (resolve, reject) => {
+            
+            // Start Fetch request
+            fetch( `http://localhost:3001/${endpoint}`, {
+                method: 'GET'
+            })
+            // Get Fetch response
+            .then( response => {
+                // Check response
+                if( response.ok ){
+                    // Extraire les données en JSON
+                    return response.json();
+                }
+                else{
+                    return reject(reponse);
+                }
+            })
+            // Get json data from response
+            .then( jsonData => {
+                return resolve(jsonData);
+            })
+            // Get Fetch request error
+            .catch( error => {
+                return reject(error);
+            });
+        })
     };
     
     // CRUD: update item by id
