@@ -8,6 +8,9 @@ Import
     const path = require('path');
     const cors = require('cors');
     const fetch = require('node-fetch');
+
+    // Inner
+    const { createItem, readAllItems, reaedItem, updateItem, deleteItem } = require('./servives/fetch.service');
 //
 
 
@@ -109,45 +112,28 @@ Config
                 
                 // CRUD : read all items
                 server.get( '/api/post', (req, res) => {
-                    // Start Fetch reequest
-                    fetch( 'http://localhost:3001/post', {
-                        method: 'GET'
-                    })
-                    // Get Fetch response
-                    .then( response => {
-                        // Check response
-                        if( response.ok ){
-                            // Extraire les données en JSON
-                            return response.json();
-                        }
-                        else{
-                            res.json({
-                                msg: 'Fetch error',
-                                data: null,
-                                error: response,
-                                status: 500
-                            })
-                        }
-                    })
-                    // Get json data from response
-                    .then( jsonData => {
-                        // Send back json data to client
+
+                    // Use the service method
+                    readAllItems()
+                    // => Get the Promise.resolve() data
+                    .then( data => {
                         res.json({
-                            msg: 'Post data sended!',
-                            data: jsonData,
+                            msg: 'Data send!',
+                            data: data,
                             error: null,
                             status: 200
                         })
                     })
-                    // Get Fetch request error
+                    // => Get the Promise.reject() data
                     .catch( error => {
                         res.json({
-                            msg: 'Fetch error',
+                            msg: 'Data not send!',
                             data: null,
                             error: error,
                             status: 500
                         })
-                    });
+                    })
+                
                 })
                 
                 // CRUD : update item by id
