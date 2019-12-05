@@ -8,18 +8,14 @@ const fetch = require('node-fetch');
 Methods
 */
     // CRUD: create item
-    const createItem = () => {
-    
-    };
-    
-    // CRUD: read all items
-    const readAllItems = () => {
+    const createItem = ( endpoint, data ) => {
         // Return new Promise
         return new Promise( (resolve, reject) => {
-        
             // Start Fetch request
-            fetch( 'http://localhost:3001/post', {
-                method: 'GET'
+            fetch( `http://localhost:3001/${endpoint}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             })
             // Get Fetch response
             .then( response => {
@@ -41,8 +37,8 @@ Methods
                 return reject(error);
             });
         })
-        
     };
+    
     
     // CRUD: read item by id
     const readItem = ( endpoint ) => {
@@ -89,5 +85,5 @@ Methods
 /*
 Exports
 */
-    module.exports = { createItem, readAllItems, readItem, updateItem, deleteItem }
+    module.exports = { createItem, readItem, updateItem, deleteItem }
 //

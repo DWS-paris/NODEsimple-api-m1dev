@@ -10,7 +10,7 @@ Import
     const fetch = require('node-fetch');
 
     // Inner
-    const { createItem, readAllItems, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
+    const { createItem, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
 //
 
 
@@ -58,12 +58,25 @@ Config
                     // Get data from rrequest body
                     const bodyData = req.body;
                 
-                    // Send back data to the client
-                    res.json({
-                        msg: 'Post created!',
-                        data: bodyData,
-                        error: null,
-                        status: 201
+                    // Use the service method
+                    createItem( 'post', bodyData )
+                    // => Get the Promise.resolve() data
+                    .then( data => {
+                        res.json({
+                            msg: 'Data created!',
+                            data: data,
+                            error: null,
+                            status: 201
+                        })
+                    })
+                    // => Get the Promise.reject() data
+                    .catch( error => {
+                        res.json({
+                            msg: 'Data not created!',
+                            data: null,
+                            error: error,
+                            status: 500
+                        })
                     })
                 });
                 
@@ -90,7 +103,6 @@ Config
                             status: 500
                         })
                     })
-
                 })
 
                 // CRUD : read all items
