@@ -1,0 +1,23 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "firstname": "Julien",
+      "lastname": "Noyer",
+      "email": "julien@dwsapp.io",
+      "password": "azertyuiop"
+    }
+  ],
+  "post": [
+    {
+      "id": 1,
+      "title": "Lorem, ipsum dolor sit amet",
+      "body": "Consectetur adipisicing elit. Cum sed eum itaque, facere non nobis repellendus aliquid dolore, nulla velit tempora expedita cupiditate optio eligendi laboriosam dolorem voluptates repellat alias."
+    },
+    {
+      "title": "smdkjfgmsjfgksjdfgjk",
+      "body": "sdflkgjsdmlfjgsmdjgmlksdjgmlksjglmkjdlgkjlkgj",
+      "id": 2
+    }
+  ]
+}
