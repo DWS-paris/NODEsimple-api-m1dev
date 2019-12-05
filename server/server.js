@@ -10,7 +10,7 @@ Import
     const fetch = require('node-fetch');
 
     // Inner
-    const { createItem, readAllItems, reaedItem, updateItem, deleteItem } = require('./servives/fetch.service');
+    const { createItem, readAllItems, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
 //
 
 
@@ -66,55 +66,9 @@ Config
                 
                 // CRUD : read item by id
                 server.get( '/api/post/:id', (req, res) => {
-                    // Get request param id
-                    const paramId = req.params['id'];
-                    
-                    // Start Fetch reequest
-                    fetch( `http://localhost:3001/post/${paramId}`, {
-                        method: 'GET'
-                    })
-                    // Get Fetch response
-                    .then( response => {
-                        // Check response
-                        if( response.ok ){
-                            // Extraire les données en JSON
-                            return response.json();
-                        }
-                        else{
-                            res.json({
-                                msg: 'Fetch error',
-                                data: null,
-                                error: response,
-                                status: 500
-                            })
-                        }
-                    })
-                    // Get json data from response
-                    .then( jsonData => {
-                        // Send back json data to client
-                        res.json({
-                            msg: 'Post data sended!',
-                            data: jsonData,
-                            error: null,
-                            status: 200
-                        })
-                    })
-                    // Get Fetch request error
-                    .catch( error => {
-                        res.json({
-                            msg: 'Fetch error',
-                            data: null,
-                            error: error,
-                            status: 500
-                        })
-                    });
-                })
-                
-                // CRUD : read all items
-                server.get( '/api/post', (req, res) => {
 
                     // Use the service method
-                    readAllItems()
+                    readItem(`post/${req.params['id']}`)
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
@@ -133,7 +87,33 @@ Config
                             status: 500
                         })
                     })
-                
+
+                })
+
+                // CRUD : read all items
+                server.get( '/api/post', (req, res) => {
+
+                    // Use the service method
+                    readItem('post')
+                    // => Get the Promise.resolve() data
+                    .then( data => {
+                        res.json({
+                            msg: 'Data send!',
+                            data: data,
+                            error: null,
+                            status: 200
+                        })
+                    })
+                    // => Get the Promise.reject() data
+                    .catch( error => {
+                        res.json({
+                            msg: 'Data not send!',
+                            data: null,
+                            error: error,
+                            status: 500
+                        })
+                    })
+
                 })
                 
                 // CRUD : update item by id

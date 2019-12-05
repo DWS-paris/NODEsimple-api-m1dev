@@ -1,4 +1,4 @@
-<form action="#"">
+<form action="#" id="addPostForm">
     <label for="title">Title</label>
     <input type="text" name="title" id="title" minlength="5" required>
 
@@ -7,3 +7,66 @@
 
     <button type="submit">Add post</button>
 </form>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* 
+        Déclaration
+        */
+            let addPostForm = document.querySelector('#addPostForm');
+            let title = document.querySelector('#title');
+            let body = document.querySelector('#body');
+        //
+
+        /* 
+        Functions
+        */
+            const getFormSubmit = () => {
+                // Get form submission
+                addPostForm.addEventListener('submit', event => {
+                    console.log('test')
+                    // Disable submit event
+                    event.preventDefault();
+
+                    // Check values
+                    if( 
+                        title.value.length >= 5 &&
+                        body.value.length >= 5
+                    ){
+                        // Send data with Fetch
+                        fetch('/api/post', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                title: title.value,
+                                body: body.value
+                            })
+                        })
+                        // Get Fetch response
+                        .then( response => {
+                            // Check response
+                            return response.ok ? response.json : console.error(response)
+                        })
+                        // Get json data from response
+                        .then( jsonData => {
+                            console.log(jsonData)
+                        })
+                        // Get Fetch request error
+                        .catch( err => {
+                            console.error(err);
+                        }); 
+                    }
+                })
+
+            }
+        //
+
+        /* 
+        Start interface
+        */
+            getFormSubmit();
+        //
+    })
+</script>
