@@ -9,7 +9,7 @@ Import
     const cors = require('cors');
 
     // Inner
-    const { createItem, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
+    const { register, login, createItem, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
 //
 
 

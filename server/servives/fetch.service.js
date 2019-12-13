@@ -153,5 +153,5 @@ Methods
 /*
 Exports
 */
-    module.exports = { createItem, readItem, updateItem, deleteItem }
+    module.exports = { register, login, createItem, readItem, updateItem, deleteItem }
 //
