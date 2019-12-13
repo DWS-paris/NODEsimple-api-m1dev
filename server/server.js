@@ -88,12 +88,12 @@ Config
                 //
 
                 // CRUD : create item
-                server.post( '/api/post', (req, res) => {
+                server.post( '/api/:endpoint', (req, res) => {
                     // Get data from rrequest body
                     const bodyData = req.body;
                 
                     // Use the service method
-                    createItem( 'post', bodyData )
+                    createItem( req.params['endpoint'], bodyData )
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
@@ -115,10 +115,10 @@ Config
                 });
                 
                 // CRUD : read item by id
-                server.get( '/api/post/:id', (req, res) => {
+                server.get( '/api/:endpoint/:id', (req, res) => {
 
                     // Use the service method
-                    readItem(`post/${req.params['id']}`)
+                    readItem(req.params['endpoint'], req.params['id'])
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
@@ -140,9 +140,9 @@ Config
                 })
 
                 // CRUD : read all items
-                server.get( '/api/post', (req, res) => {
+                server.get( '/api/:endpoint', (req, res) => {
                     // Use the service method
-                    readItem('post')
+                    readItem(req.params['endpoint'])
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
@@ -164,12 +164,12 @@ Config
                 })
                 
                 // CRUD : update item by id
-                server.put( '/api/post/:id', (req, res) => {
+                server.put( '/api/:endpoint/:id', (req, res) => {
                     // Get data from rrequest body
                     const bodyData = req.body;
                 
                     // Use the service method
-                    updateItem( 'post', bodyData )
+                    updateItem( req.params['endpoint'], bodyData )
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
@@ -191,9 +191,9 @@ Config
                 });
                 
                 // CRUD : delete item by id
-                server.delete( '/api/post/:id', (req, res) => {
+                server.delete( '/api/:endpoint/:id', (req, res) => {
                     // Use the service method
-                    deleteItem( 'post', req.params['id'] )
+                    deleteItem( req.params['endpoint'], req.params['id'] )
                     // => Get the Promise.resolve() data
                     .then( data => {
                         res.json({
