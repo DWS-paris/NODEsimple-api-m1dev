@@ -18,7 +18,8 @@
                 document.querySelector('#postList').innerHTML += `
                     <li>
                         <p>${post.title}</p>
-                        <a href="post/${post.id}">Reead more...</a>
+                        <a href="post/${post.id}"><i class="far fa-eye"></i></a>
+                        <a href="#" class="delete" post-id="${post.id}"><i class="fas fa-trash"></i></i></a>
                     </li>
                 `;
             }
