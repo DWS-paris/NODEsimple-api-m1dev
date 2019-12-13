@@ -9,7 +9,7 @@ Import
     const cors = require('cors');
 
     // Inner
-    const { createItem, readItem, updateItem, deleteItem } = require('./servives/promise.service');
+    const { createItem, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
 //
 
 
@@ -66,7 +66,7 @@ Config
             */
                 /* 
                 Registration and login routes
-                TODO: create register adn login function une fetch.service
+                TODO: create register and login function une fetch.service
                 */
                     server.post( '/api/register', (req, res) => {
                         res.json({

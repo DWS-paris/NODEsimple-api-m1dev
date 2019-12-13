@@ -7,6 +7,22 @@ Import
 /*
 Methods
 */
+    // REGISTER: create new user
+    const register = ( data ) => {
+        // Return new Promise
+        return new Promise( (resolve, reject) => {
+            
+        });
+    };
+
+    // LOGIN: connect user
+    const login = ( data ) => {
+        // Return new Promise
+        return new Promise( (resolve, reject) => {
+            
+        });
+    };
+    
     // CRUD: create item
     const createItem = ( endpoint, data ) => {
         // Return new Promise
