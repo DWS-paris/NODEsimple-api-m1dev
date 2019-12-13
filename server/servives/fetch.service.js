@@ -36,22 +36,13 @@ Methods
             // Get Fetch response
             .then( response => {
                 // Check response
-                if( response.ok ){
-                    // Extraire les données en JSON
-                    return response.json();
-                }
-                else{
-                    return reject(reponse);
-                }
+                if( response.ok ){ return response.json() }
+                else{ return reject(reponse) }
             })
             // Get json data from response
-            .then( jsonData => {
-                return resolve(jsonData);
-            })
+            .then( jsonData => resolve(jsonData))
             // Get Fetch request error
-            .catch( error => {
-                return reject(error);
-            });
+            .catch( error => reject(error));
         })
     };
     
@@ -68,22 +59,13 @@ Methods
             // Get Fetch response
             .then( response => {
                 // Check response
-                if( response.ok ){
-                    // Extraire les données en JSON
-                    return response.json();
-                }
-                else{
-                    return reject(reponse);
-                }
+                if( response.ok ){ return response.json() }
+                else{ return reject(reponse) }
             })
             // Get json data from response
-            .then( jsonData => {
-                return resolve(jsonData);
-            })
+            .then( jsonData => resolve(jsonData))
             // Get Fetch request error
-            .catch( error => {
-                return reject(error);
-            });
+            .catch( error => reject(error));
         })
     };
     
@@ -100,22 +82,13 @@ Methods
             // Get Fetch response
             .then( response => {
                 // Check response
-                if( response.ok ){
-                    // Extraire les données en JSON
-                    return response.json();
-                }
-                else{
-                    return reject(reponse);
-                }
+                if( response.ok ){ return response.json() }
+                else{ return reject(reponse) }
             })
             // Get json data from response
-            .then( jsonData => {
-                return resolve(jsonData);
-            })
+            .then( jsonData => resolve(jsonData))
             // Get Fetch request error
-            .catch( error => {
-                return reject(error);
-            });
+            .catch( error => reject(error));
         })
     };
     
@@ -130,22 +103,13 @@ Methods
             // Get Fetch response
             .then( response => {
                 // Check response
-                if( response.ok ){
-                    // Extraire les données en JSON
-                    return response.json();
-                }
-                else{
-                    return reject(reponse);
-                }
+                if( response.ok ){ return response.json() }
+                else{ return reject(reponse) }
             })
             // Get json data from response
-            .then( jsonData => {
-                return resolve(jsonData);
-            })
+            .then( jsonData => resolve(jsonData))
             // Get Fetch request error
-            .catch( error => {
-                return reject(error);
-            });
+            .catch( error => reject(error));
         })
     };
 //
@@ -153,5 +117,5 @@ Methods
 /*
 Exports
 */
-    module.exports = { register, login, createItem, readItem, updateItem, deleteItem }
+    module.exports = { register, login,createItem, readItem, updateItem, deleteItem }
 //
