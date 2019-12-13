@@ -1,7 +1,7 @@
 /*
 Import
 */
-const fetch = require('node-fetch');
+    const fetch = require('node-fetch');
 //
 
 /*
@@ -72,13 +72,65 @@ Methods
     };
     
     // CRUD: update item by id
-    const updateItem = () => {
-    
+    const updateItem = (endpoint, id) => {
+        // Return new Promise
+        return new Promise( (resolve, reject) => {
+            // Start Fetch request
+            fetch( `http://localhost:3001/${endpoint}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            // Get Fetch response
+            .then( response => {
+                // Check response
+                if( response.ok ){
+                    // Extraire les données en JSON
+                    return response.json();
+                }
+                else{
+                    return reject(reponse);
+                }
+            })
+            // Get json data from response
+            .then( jsonData => {
+                return resolve(jsonData);
+            })
+            // Get Fetch request error
+            .catch( error => {
+                return reject(error);
+            });
+        })
     };
     
     // CRUD: delete item by id
-    const deleteItem = () => {
-    
+    const deleteItem = (endpoint, id) => {
+        // Return new Promise
+        return new Promise( (resolve, reject) => {
+            // Start Fetch request
+            fetch( `http://localhost:3001/${endpoint}/${id}`, {
+                method: 'DELETE'
+            })
+            // Get Fetch response
+            .then( response => {
+                // Check response
+                if( response.ok ){
+                    // Extraire les données en JSON
+                    return response.json();
+                }
+                else{
+                    return reject(reponse);
+                }
+            })
+            // Get json data from response
+            .then( jsonData => {
+                return resolve(jsonData);
+            })
+            // Get Fetch request error
+            .catch( error => {
+                return reject(error);
+            });
+        })
     };
 //
 
