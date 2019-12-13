@@ -7,7 +7,6 @@ Import
     const bodyParser = require('body-parser');
     const path = require('path');
     const cors = require('cors');
-    const fetch = require('node-fetch');
 
     // Inner
     const { createItem, readItem, updateItem, deleteItem } = require('./servives/fetch.service');
@@ -65,6 +64,29 @@ Config
             /*
             API router
             */
+                /* 
+                Registration and login routes
+                TODO: create register adn login function une fetch.service
+                */
+                    server.post( '/api/register', (req, res) => {
+                        res.json({
+                            msg: 'Route api/register',
+                            data: data,
+                            error: null,
+                            status: 200
+                        });
+                    });
+
+                    server.post( '/api/login', (req, res) => {
+                        res.json({
+                            msg: 'Route api/login',
+                            data: data,
+                            error: null,
+                            status: 200
+                        });
+                    });
+                //
+
                 // CRUD : create item
                 server.post( '/api/post', (req, res) => {
                     // Get data from rrequest body
