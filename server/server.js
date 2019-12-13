@@ -119,7 +119,6 @@ Config
 
                 // CRUD : read all items
                 server.get( '/api/post', (req, res) => {
-
                     // Use the service method
                     readItem('post')
                     // => Get the Promise.resolve() data
@@ -140,28 +139,56 @@ Config
                             status: 500
                         })
                     })
-
                 })
                 
                 // CRUD : update item by id
                 server.put( '/api/post/:id', (req, res) => {
-                    // Send back data to the client
-                    res.json({
-                        msg: 'Post send!',
-                        data: null,
-                        error: null,
-                        status: 201
+                    // Get data from rrequest body
+                    const bodyData = req.body;
+                
+                    // Use the service method
+                    updateItem( 'post', bodyData )
+                    // => Get the Promise.resolve() data
+                    .then( data => {
+                        res.json({
+                            msg: 'Data updated!',
+                            data: data,
+                            error: null,
+                            status: 201
+                        })
+                    })
+                    // => Get the Promise.reject() data
+                    .catch( error => {
+                        res.json({
+                            msg: 'Data not updated!',
+                            data: null,
+                            error: error,
+                            status: 500
+                        })
                     })
                 });
                 
                 // CRUD : delete item by id
                 server.delete( '/api/post/:id', (req, res) => {
-                    // Send back data to the client
-                    res.json({
-                        msg: 'Post send!',
-                        data: null,
-                        error: null,
-                        status: 201
+                    // Use the service method
+                    deleteItem( 'post', req.params['id'] )
+                    // => Get the Promise.resolve() data
+                    .then( data => {
+                        res.json({
+                            msg: 'Data deleted!',
+                            data: data,
+                            error: null,
+                            status: 200
+                        })
+                    })
+                    // => Get the Promise.reject() data
+                    .catch( error => {
+                        res.json({
+                            msg: 'Data not deleted!',
+                            data: null,
+                            error: error,
+                            status: 500
+                        })
                     })
                 });
             //
