@@ -54,6 +54,7 @@ Config
             */
                 /* 
                 Registration and login routes
+                Use those routes to create new user and log him
                 TODO: create register and login function une fetch.service
                 */
                     server.post( '/api/register', (req, res) => {
@@ -75,132 +76,137 @@ Config
                     });
                 //
 
-                // CRUD : create item
-                server.post( '/api/:endpoint', (req, res) => {
-                    // Get data from rrequest body
-                    const bodyData = req.body;
-                
-                    // Use the service method
-                    createItem( req.params['endpoint'], bodyData )
-                    // => Get the Promise.resolve() data
-                    .then( data => {
-                        res.json({
-                            msg: 'Data created!',
-                            data: data,
-                            error: null,
-                            status: 201
+                /* 
+                API CRUD routes
+                Use those routes for any type of data
+                */
+                    // CRUD : create item
+                    server.post( '/api/:endpoint', (req, res) => {
+                        // Get data from rrequest body
+                        const bodyData = req.body;
+                    
+                        // Use the service method
+                        createItem( req.params['endpoint'], bodyData )
+                        // => Get the Promise.resolve() data
+                        .then( data => {
+                            res.json({
+                                msg: 'Data created!',
+                                data: data,
+                                error: null,
+                                status: 201
+                            })
                         })
-                    })
-                    // => Get the Promise.reject() data
-                    .catch( error => {
-                        res.json({
-                            msg: 'Data not created!',
-                            data: null,
-                            error: error,
-                            status: 500
+                        // => Get the Promise.reject() data
+                        .catch( error => {
+                            res.json({
+                                msg: 'Data not created!',
+                                data: null,
+                                error: error,
+                                status: 500
+                            })
                         })
-                    })
-                });
-                
-                // CRUD : read item by id
-                server.get( '/api/:endpoint/:id', (req, res) => {
+                    });
+                    
+                    // CRUD : read item by id
+                    server.get( '/api/:endpoint/:id', (req, res) => {
 
-                    // Use the service method
-                    readItem(req.params['endpoint'], req.params['id'])
-                    // => Get the Promise.resolve() data
-                    .then( data => {
-                        res.json({
-                            msg: 'Data send!',
-                            data: data,
-                            error: null,
-                            status: 200
+                        // Use the service method
+                        readItem(req.params['endpoint'], req.params['id'])
+                        // => Get the Promise.resolve() data
+                        .then( data => {
+                            res.json({
+                                msg: 'Data send!',
+                                data: data,
+                                error: null,
+                                status: 200
+                            })
+                        })
+                        // => Get the Promise.reject() data
+                        .catch( error => {
+                            res.json({
+                                msg: 'Data not send!',
+                                data: null,
+                                error: error,
+                                status: 500
+                            })
                         })
                     })
-                    // => Get the Promise.reject() data
-                    .catch( error => {
-                        res.json({
-                            msg: 'Data not send!',
-                            data: null,
-                            error: error,
-                            status: 500
-                        })
-                    })
-                })
 
-                // CRUD : read all items
-                server.get( '/api/:endpoint', (req, res) => {
-                    // Use the service method
-                    readItem(req.params['endpoint'])
-                    // => Get the Promise.resolve() data
-                    .then( data => {
-                        res.json({
-                            msg: 'Data send!',
-                            data: data,
-                            error: null,
-                            status: 200
+                    // CRUD : read all items
+                    server.get( '/api/:endpoint', (req, res) => {
+                        // Use the service method
+                        readItem(req.params['endpoint'])
+                        // => Get the Promise.resolve() data
+                        .then( data => {
+                            res.json({
+                                msg: 'Data send!',
+                                data: data,
+                                error: null,
+                                status: 200
+                            })
+                        })
+                        // => Get the Promise.reject() data
+                        .catch( error => {
+                            res.json({
+                                msg: 'Data not send!',
+                                data: null,
+                                error: error,
+                                status: 500
+                            })
                         })
                     })
-                    // => Get the Promise.reject() data
-                    .catch( error => {
-                        res.json({
-                            msg: 'Data not send!',
-                            data: null,
-                            error: error,
-                            status: 500
+                    
+                    // CRUD : update item by id
+                    server.put( '/api/:endpoint/:id', (req, res) => {
+                        // Get data from rrequest body
+                        const bodyData = req.body;
+                    
+                        // Use the service method
+                        updateItem( req.params['endpoint'], bodyData )
+                        // => Get the Promise.resolve() data
+                        .then( data => {
+                            res.json({
+                                msg: 'Data updated!',
+                                data: data,
+                                error: null,
+                                status: 201
+                            })
                         })
-                    })
-                })
-                
-                // CRUD : update item by id
-                server.put( '/api/:endpoint/:id', (req, res) => {
-                    // Get data from rrequest body
-                    const bodyData = req.body;
-                
-                    // Use the service method
-                    updateItem( req.params['endpoint'], bodyData )
-                    // => Get the Promise.resolve() data
-                    .then( data => {
-                        res.json({
-                            msg: 'Data updated!',
-                            data: data,
-                            error: null,
-                            status: 201
+                        // => Get the Promise.reject() data
+                        .catch( error => {
+                            res.json({
+                                msg: 'Data not updated!',
+                                data: null,
+                                error: error,
+                                status: 500
+                            })
                         })
-                    })
-                    // => Get the Promise.reject() data
-                    .catch( error => {
-                        res.json({
-                            msg: 'Data not updated!',
-                            data: null,
-                            error: error,
-                            status: 500
+                    });
+                    
+                    // CRUD : delete item by id
+                    server.delete( '/api/:endpoint/:id', (req, res) => {
+                        // Use the service method
+                        deleteItem( req.params['endpoint'], req.params['id'] )
+                        // => Get the Promise.resolve() data
+                        .then( data => {
+                            res.json({
+                                msg: 'Data deleted!',
+                                data: data,
+                                error: null,
+                                status: 200
+                            })
                         })
-                    })
-                });
-                
-                // CRUD : delete item by id
-                server.delete( '/api/:endpoint/:id', (req, res) => {
-                    // Use the service method
-                    deleteItem( req.params['endpoint'], req.params['id'] )
-                    // => Get the Promise.resolve() data
-                    .then( data => {
-                        res.json({
-                            msg: 'Data deleted!',
-                            data: data,
-                            error: null,
-                            status: 200
+                        // => Get the Promise.reject() data
+                        .catch( error => {
+                            res.json({
+                                msg: 'Data not deleted!',
+                                data: null,
+                                error: error,
+                                status: 500
+                            })
                         })
-                    })
-                    // => Get the Promise.reject() data
-                    .catch( error => {
-                        res.json({
-                            msg: 'Data not deleted!',
-                            data: null,
-                            error: error,
-                            status: 500
-                        })
-                    })
-                });
+                    });
+                //
             //
         }
 
